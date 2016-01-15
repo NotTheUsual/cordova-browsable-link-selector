@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-browsable-link-selector",
+  "version": "0.1.0",
+  "description": "Cordova plugin for browsing and selecting links",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elliotstokes/cordova-browsable-link-selector.git"
+  },
+  "keywords": [
+    "cordova",
+    "webview",
+    "link",
+    "browser"
+  ],
+  "author": "Elliot Stokes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elliotstokes/cordova-browsable-link-selector/issues"
+  },
+  "homepage": "https://github.com/elliotstokes/cordova-browsable-link-selector#readme"
+}
