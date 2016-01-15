@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.megaphone.cordova.browsableLinkSelector" version="0.3.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>browsable-link-selector</name>
+    <author>Elliot Stokes</author>
+
+    <engines>
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module name="EventBrowser" src="www/eventBrowser.js">
+        <clobbers target="cordova.plugins.browsableLinkSelector" />
+    </js-module>
+
+    <platform name="ios">
+      <hook type="after_plugin_install" src="hooks/add_swift_support.js" />
+      <header-file src="src/ios/cordova-plugin-EventBrowser-Bridging-Header.h" />
+      
+      <source-file src="src/ios/EventBrowserViewController.swift" />
+      <source-file src="src/ios/EventBrowser.swift" />
+      <resource-file src="src/ios/EventBrowser.storyboard" />
+
+      <config-file target="config.xml" parent="/*">
+        <feature name="EventBrowser">
+          <param name="ios-package" value="EventBrowser" />
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+
+    </platform>
+
+    <platform name="android">
+       <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="EventBrowser">
+           <param name="android-package" value="com.megaphone.cordova.events.EventBrowser"/>
+        </feature>
+      </config-file>
+
+      <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <activity
+            android:name="com.megaphone.cordova.events.EventBrowserActivity"
+            android:label="Select Event" android:theme="@style/EventBrowserTheme">
+        </activity>
+      </config-file>
+
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+      </config-file>
+
+      <source-file src="src/android/EventBrowserActivity.java" target-dir="src/com/megaphone/cordova/events"/>
+      <source-file src="src/android/FakeR.java" target-dir="src/com/megaphone/cordova/events"/>
+      <source-file src="src/android/EventBrowser.java" target-dir="src/com/megaphone/cordova/events"/>
+
+
+      <resource-file src="src/android/res/drawable-hdpi/ic_action_action_done.png" target="res/drawable-hdpi/ic_action_action_done.png" />
+      <resource-file src="src/android/res/drawable-mdpi/ic_action_action_done.png" target="res/drawable-mdpi/ic_action_action_done.png" />
+      <resource-file src="src/android/res/drawable-xhdpi/ic_action_action_done.png" target="res/drawable-xhdpi/ic_action_action_done.png" />
+      <resource-file src="src/android/res/drawable-xxhdpi/ic_action_action_done.png" target="res/drawable-xxhdpi/ic_action_action_done.png" />
+      <resource-file src="src/android/res/drawable-xxxhdpi/ic_action_action_done.png" target="res/drawable-xxxhdpi/ic_action_action_done.png" />
+      <resource-file src="src/android/res/layout/activity_event_browser.xml" target="res/layout/activity_event_browser.xml" />
+      <resource-file src="src/android/res/menu/menu.xml" target="res/menu/menu.xml" />
+      <resource-file src="src/android/res/values/eventBrowserStyles.xml" target="res/values/eventBrowserStyles.xml" />
+      <framework src="com.android.support:appcompat-v7:22.2.1" /> 
+    </platform>
+</plugin>
