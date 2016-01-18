@@ -50,6 +50,9 @@ public class EventBrowserActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
 
+            Intent intent = getIntent();
+            String url = intent.getStringExtra("url");
+
             super.onCreate(savedInstanceState);
             fakeR = new FakeR(this);
             setContentView(fakeR.getId("layout", "activity_event_browser"));
@@ -84,7 +87,7 @@ public class EventBrowserActivity extends AppCompatActivity {
                 }
             });
             _webview.getSettings().setJavaScriptEnabled(true);
-            _webview.loadUrl("https://google.com/");
+            _webview.loadUrl(url);
     }
 
     @Override
