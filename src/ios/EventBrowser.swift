@@ -15,15 +15,23 @@ import UIKit
 
     func showBrowser(command: CDVInvokedUrlCommand) {
         self.command = command
-        
+        var url = "http://www.google.com"
+        if let defaultUrl = command.argumentAtIndex(0) {
+            url = defaultUrl as! String
+        }
+
         let storyboard = UIStoryboard(name: "EventBrowser", bundle: nil)
         let navCtrl = storyboard.instantiateViewControllerWithIdentifier("eventBrowserNavigationController") as! UINavigationController
         
         let eventBrowser = navCtrl.childViewControllers[0] as! EventBrowserViewController
+        
+        eventBrowser.url = url
         eventBrowser.onClosed = modalDidClose
 
         viewController!.modalTransitionStyle = .CoverVertical
         viewController!.presentViewController(navCtrl, animated: true, completion: nil)
+        
+   
     }
     
     func modalDidClose(url:String?) {

@@ -15,6 +15,21 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
     var forwardButton: UIBarButtonItem?
     
     internal var onClosed : ((url:String?) -> Void)?
+
+    internal var url: String? {
+        didSet {
+            setUrl()
+
+        }
+    }
+    
+    private func setUrl() {
+        if let selectedUrl = self.url {
+            let theUrl = NSURL(string:selectedUrl)
+            let req = NSURLRequest(URL:theUrl!)
+            webview?.loadRequest(req)
+        }
+    }
     
     @IBAction func cancelClicked(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: {
@@ -26,24 +41,16 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
         dismissViewControllerAnimated(true, completion: {
             self.onClosed?(url:self.webview?.URL?.absoluteString)
         })
-        
-
     }
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let url = NSURL(string:"https://www.google.com/")
-        let req = NSURLRequest(URL:url!)
-        if let currentWebview = webview {
-            currentWebview.loadRequest(req)
-            currentWebview.allowsBackForwardNavigationGestures = true
-            
-            webview?.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        }
-        
-        
-        
+        webview?.allowsBackForwardNavigationGestures = true
+        webview?.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
+                
         forwardButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FastForward, target: self, action: "forwardTapped")
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         backButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Rewind, target: self, action: "backTapped")
@@ -51,7 +58,7 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
         
         
         navigationController?.toolbarHidden = false
-
+        setUrl()
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -73,8 +80,6 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
     }
     
     
-
-    
     func backTapped() {
         webview?.goBack()
     }
@@ -87,6 +92,7 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
         webview = WKWebView()
         webview?.navigationDelegate = self
         view = webview
+        
     }
 
 

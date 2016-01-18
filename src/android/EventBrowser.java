@@ -31,7 +31,13 @@ public class EventBrowser extends CordovaPlugin {
         }
 
 		if (action.equals(ACTION_SHOW_BROWSER)) {
+			String defaultUrl = args.optString(0);
+			if (defaultUrl == null) {
+				defaultUrl = "https://www.google.com";
+			}
+
 			Intent intent = new Intent(this.cordova.getActivity().getApplicationContext(), EventBrowserActivity.class);
+			intent.putExtra("url", defaultUrl);
 			this.cordova.startActivityForResult((CordovaPlugin) this, intent, 1);
 			PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
 			r.setKeepCallback(true);
