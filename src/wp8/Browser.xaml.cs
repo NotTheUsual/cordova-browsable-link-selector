@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Diagnostics;
+using WPCordovaClassLib.Cordova.Commands;
 
 namespace com.ionicframework.browsertest922073.Plugins.com.megaphone.cordova.browsableLinkSelector
 {
@@ -30,8 +31,14 @@ namespace com.ionicframework.browsertest922073.Plugins.com.megaphone.cordova.bro
             }
             else
             {
-                URL = "http://news.bbc.co.uk";
+                URL = "http://justroundup.com";
             }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            EventBrowser.cancel();
+            base.OnNavigatedFrom(e);
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -75,8 +82,7 @@ namespace com.ionicframework.browsertest922073.Plugins.com.megaphone.cordova.bro
 
         private void ImportButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("Importing");
-            Debug.WriteLine(URL);
+            EventBrowser.importURL(URL);
         }
 
         private void WebBrowser_Navigated(object sender, NavigationEventArgs e)
