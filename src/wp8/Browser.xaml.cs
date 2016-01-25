@@ -82,6 +82,7 @@ namespace com.ionicframework.browsertest922073.Plugins.com.megaphone.cordova.bro
 
         private void ImportButton_Click(object sender, EventArgs e)
         {
+            this.NavigationService.GoBack();
             EventBrowser.importURL(URL);
         }
 

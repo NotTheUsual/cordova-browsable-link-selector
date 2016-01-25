@@ -78,9 +78,9 @@
         <source-file src="src/wp8/Browser.xaml.cs" />
         <source-file src="src/wp8/Browser.xaml" />
         
-        <resource-file src="src/wp8/Images/back.png" />
-        <resource-file src="src/wp8/Images/cancel.png" />
-        <resource-file src="src/wp8/Images/download.png" />
-        <resource-file src="src/wp8/Images/next.png" />
+        <source-file src="src/wp8/Images/back.png" />
+        <source-file src="src/wp8/Images/cancel.png" />
+        <source-file src="src/wp8/Images/download.png" />
+        <source-file src="src/wp8/Images/next.png" />
     </platform>
 </plugin>

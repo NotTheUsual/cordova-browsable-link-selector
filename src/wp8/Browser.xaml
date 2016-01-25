@@ -23,16 +23,16 @@
     <phone:PhoneApplicationPage.ApplicationBar >
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
             <shell:ApplicationBarIconButton
-                IconUri="Plugins/com.megaphone.cordova.browsableLinkSelector/Images/cancel.png"
+                IconUri="/Plugins/com.megaphone.cordova.browsableLinkSelector/cancel.png"
                 Text="Cancel" x:Name="CancelButton" Click="CancelButton_Click" IsEnabled="True" />
             <shell:ApplicationBarIconButton
-                IconUri="Plugins/com.megaphone.cordova.browsableLinkSelector/Images/back.png"
+                IconUri="/Plugins/com.megaphone.cordova.browsableLinkSelector/back.png"
                 Text="Back" x:Name="BackButton" Click="BackButton_Click" IsEnabled="False" />
             <shell:ApplicationBarIconButton
-                IconUri="Plugins/com.megaphone.cordova.browsableLinkSelector/Images/next.png"
+                IconUri="/Plugins/com.megaphone.cordova.browsableLinkSelector/next.png"
                 Text="Forward" x:Name="ForwardButton" Click="ForwardButton_Click" IsEnabled="False" />
             <shell:ApplicationBarIconButton
-                IconUri="Plugins/com.megaphone.cordova.browsableLinkSelector/Images/download.png"
+                IconUri="/Plugins/com.megaphone.cordova.browsableLinkSelector/download.png"
                 Text="Import" x:Name="ImportButton" Click="ImportButton_Click" IsEnabled="True" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
