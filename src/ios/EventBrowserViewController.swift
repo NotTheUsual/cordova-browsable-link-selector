@@ -14,12 +14,14 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
     var backButton: UIBarButtonItem?
     var forwardButton: UIBarButtonItem?
     
+    @IBOutlet weak var webviewView: UIView!
+    
     internal var onClosed : ((url:String?) -> Void)?
-
+    
     internal var url: String? {
         didSet {
             setUrl()
-
+            
         }
     }
     
@@ -42,15 +44,22 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
             self.onClosed?(url:self.webview?.URL?.absoluteString)
         })
     }
-
-
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        webview = WKWebView()
+        
+        webview?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        webview?.navigationDelegate = self
+        webview?.frame = CGRect(x: 0, y: 0, width: webviewView.frame.width, height: webviewView.frame.height) 
+        
+        self.webviewView.addSubview(webview!)
+        
         webview?.allowsBackForwardNavigationGestures = true
         webview?.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-                
+        
         forwardButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FastForward, target: self, action: "forwardTapped")
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         backButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Rewind, target: self, action: "backTapped")
@@ -58,7 +67,10 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
         
         
         navigationController?.toolbarHidden = false
+        
+        self.url = "https://www.google.com"
         setUrl()
+        
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -69,12 +81,12 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
             }
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     deinit {
         webview?.removeObserver(self, forKeyPath: "loading")
     }
@@ -89,12 +101,16 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
     }
     
     override func loadView() {
-        webview = WKWebView()
-        webview?.navigationDelegate = self
-        view = webview
+        
+        super.loadView()
+        
+        
+
+        
+        
         
     }
-
-
+    
+    
 }
 

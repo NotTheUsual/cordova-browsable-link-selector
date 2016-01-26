@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Event Browser-->
@@ -16,7 +17,32 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once you've found an event you like tap import!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAr-t8-67U">
+                                <rect key="frame" x="0.0" y="64" width="600" height="28"/>
+                                <color key="backgroundColor" red="0.34619391025641022" green="0.34619391025641022" blue="0.34619391025641022" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="GKw-EF-05n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GE9-VD-wLe">
+                                <rect key="frame" x="0.0" y="91.5" width="600" height="508"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kAr-t8-67U" firstAttribute="left" secondItem="8bC-Xf-vdC" secondAttribute="leftMargin" constant="-20" id="04D-WS-uSr"/>
+                            <constraint firstAttribute="trailing" secondItem="GE9-VD-wLe" secondAttribute="trailing" id="0pS-Qt-RZF"/>
+                            <constraint firstItem="GE9-VD-wLe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="34z-a0-xNL"/>
+                            <constraint firstItem="kAr-t8-67U" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5ir-HX-hgH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GE9-VD-wLe" secondAttribute="bottom" id="aKq-XA-L6x"/>
+                            <constraint firstAttribute="trailing" secondItem="kAr-t8-67U" secondAttribute="trailing" id="d1o-rS-iUg"/>
+                            <constraint firstItem="GE9-VD-wLe" firstAttribute="top" secondItem="kAr-t8-67U" secondAttribute="bottom" id="kL4-QO-VQb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Event Browser" id="jMd-8N-bZr">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="V98-3A-c5k">
@@ -32,6 +58,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="webviewView" destination="GE9-VD-wLe" id="rcx-7D-t5Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
