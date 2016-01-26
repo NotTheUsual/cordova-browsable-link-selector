@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-browsable-link-selector",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Cordova plugin for browsing and selecting links",
   "main": "index.js",
   "scripts": {
