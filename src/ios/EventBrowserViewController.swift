@@ -68,7 +68,6 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
         
         navigationController?.toolbarHidden = false
         
-        self.url = "https://www.google.com"
         setUrl()
         
     }
