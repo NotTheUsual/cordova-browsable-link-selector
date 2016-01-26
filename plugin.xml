@@ -61,4 +61,26 @@
       <resource-file src="src/android/res/values/eventBrowserStyles.xml" target="res/values/eventBrowserStyles.xml" />
       <framework src="com.android.support:appcompat-v7:22.2.1" /> 
     </platform>
+    
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_NETWORKING"/>
+        </config-file>
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="EventBrowser">
+                <param name="wp-package" value="EventBrowser"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp8/EventBrowser.cs" />
+        <source-file src="src/wp8/Browser.xaml.cs" />
+        <source-file src="src/wp8/Browser.xaml" />
+        
+        <source-file src="src/wp8/Images/back.png" />
+        <source-file src="src/wp8/Images/cancel.png" />
+        <source-file src="src/wp8/Images/download.png" />
+        <source-file src="src/wp8/Images/next.png" />
+    </platform>
 </plugin>
