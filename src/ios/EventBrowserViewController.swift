@@ -13,6 +13,7 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
     var webview: WKWebView?
     var backButton: UIBarButtonItem?
     var forwardButton: UIBarButtonItem?
+    let roundUpGreen = UIColor(red: 51.0 / 255.0, green: 204.0 / 255.0, blue: 208.0 / 255.0, alpha: 1.0)
     
     @IBOutlet weak var webviewView: UIView!
     
@@ -46,7 +47,6 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         webview = WKWebView()
@@ -60,16 +60,20 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
         webview?.allowsBackForwardNavigationGestures = true
         webview?.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
         
-        forwardButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FastForward, target: self, action: "forwardTapped")
+        forwardButton = UIBarButtonItem(title: "\u{000025B6}\u{0000FE0E}", style: .Plain, target: self, action: #selector(EventBrowserViewController.backTapped))
+        forwardButton?.tintColor = roundUpGreen
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        backButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Rewind, target: self, action: "backTapped")
+        backButton = UIBarButtonItem(title: "\u{000025C0}\u{0000FE0E}", style: .Plain, target: self, action: #selector(EventBrowserViewController.backTapped))
+        backButton?.tintColor = roundUpGreen
         self.toolbarItems = [backButton!, spacer, forwardButton!]
-        
         
         navigationController?.toolbarHidden = false
         
         setUrl()
-        
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -90,7 +94,6 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
         webview?.removeObserver(self, forKeyPath: "loading")
     }
     
-    
     func backTapped() {
         webview?.goBack()
     }
@@ -100,16 +103,7 @@ class EventBrowserViewController: UIViewController, WKNavigationDelegate {
     }
     
     override func loadView() {
-        
         super.loadView()
-        
-        
-
-        
-        
-        
     }
-    
-    
-}
 
+}
